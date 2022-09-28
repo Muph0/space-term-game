@@ -48,12 +48,16 @@ export class SelectStationScreen implements GameScreen {
         const { term } = ctx;
         term.resetFormat();
 
-        this.menu.drawAsMenu(ctx, 1, 1);
+        term.println('\n   Select your starting space station:');
+        term.cursorY++;
+
+        const y = term.cursorY;
+        this.menu.drawAsMenu(ctx, 1, y);
 
         const station = this.stations[this.menu.selectedIndex];
         const maxNameLen = this.menu.menuWidth;
 
-        term.withOrigin(maxNameLen + 10, 1, () => {
+        term.withOrigin(maxNameLen + 10, y, () => {
 
             term.print('Hangar capacity: ');
             term.println(station.initHangarcap, Color.DarkCyan);

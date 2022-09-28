@@ -5,7 +5,8 @@
   "main": "bundle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify src/main.ts -p [ tsify --noImplicitAny ] -d -o bundle.js"
+    "build": "browserify src/main.ts -p [ tsify --noImplicitAny ] -d -o bundle.js",
+    "run": "http-server"
   },
   "author": "Muph0",
   "license": "MIT",
@@ -15,6 +16,8 @@
     "wglt": "^0.2.5"
   },
   "devDependencies": {
+    "browserify": "^17.0.0",
+    "http-server": "^14.1.1",
     "tsify": "^5.0.4"
   }
 }
