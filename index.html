@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset=utf-8>
+  <title>Typescript game template</title>
+  <style>
+    body, * {
+      margin: 0;
+      padding: 0;
+      background: black;
+      overflow: hidden;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .container {
+      --margin: 4px;
+      margin: var(--margin);
+      height: calc(100% - 2*var(--margin));
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container"><canvas></canvas></div>
+  <!--
+  <script data-main="js/main.js" src="js/require.js"></script><!-- -->
+  <script src="bundle.js"></script><!-- -->
+  <!-- Code to disable -->
+  <script type="text/javascript">
+    // prevent live reload
+    window.WebSocket1 = window.WebSocket;
+    window.WebSocket = class {};
+    console.warn('Live reload disabled.');
+  </script>
+</body>
+
+</html>

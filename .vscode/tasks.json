@@ -1,0 +1,57 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "typescript",
+            "label": "tsc: watch - tsconfig.json",
+            "tsconfig": "tsconfig.json",
+            "option": "watch",
+            "problemMatcher": [
+                "$tsc-watch"
+            ],
+            "group": "build",
+        },
+        {
+            "type": "shell",
+            "label": "browserify: watch",
+            "command": "npx",
+            "args": [
+                "watchify",
+                "src/main.ts",
+                "-p",
+                "[",
+                "tsify",
+                "--noImplicitAny",
+                "]",
+                "-d",
+                "-o",
+                "bundle.js"
+            ],
+            "problemMatcher": [
+                "$tsc-watch"
+            ],
+            "group": "build",
+        },
+        {
+            "type": "shell",
+            "label": "browserify: build",
+            "command": "npx",
+            "args": [
+                "browserify",
+                "src/main.ts",
+                "-p",
+                "[",
+                "tsify",
+                "--noImplicitAny",
+                "]",
+                "-d",
+                "-o",
+                "bundle.js"
+            ],
+            "problemMatcher": [
+                "$tsc-watch"
+            ],
+            "group": "build",
+        },
+    ]
+}

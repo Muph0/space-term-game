@@ -1,0 +1,24 @@
+
+- game model
+    - figure out a way how to represent discovery of SpaceObject s
+    - figure out a way to represent some hidden features of already
+
+
+
+- UI
+    - star system visualization
+        + recursive menu for object browsing
+        + zoom animations
+        + star background
+        - show ships
+
+    - ship control UI
+        - use case: set a job of a particular ship
+            1. select ship in SHIPS tab
+            2. select target SpaceObject, each will show available jobs
+                - eg. if object has ResourceHarvestFeature, show ShipMiningJob
+                - if object has hidden features, show ShipExploreJob
+            3. after selecting target SpaceObject, select the actual job
+
+    - i16n
+        - move texts towards the language file, to keep them away from the logic
