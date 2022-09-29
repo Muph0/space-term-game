@@ -15,7 +15,7 @@ export type MenuSettings<T> = {
 
 type MenuItems<T> = T[];
 
-function unfactorize<T>(value: MenuItems<T> | (() => MenuItems<T>)): MenuItems<T> {
+export function unfactorize<T>(value: MenuItems<T> | (() => MenuItems<T>)): MenuItems<T> {
     if (value instanceof Function) {
         return value();
     } else {

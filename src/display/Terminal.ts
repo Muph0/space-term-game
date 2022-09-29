@@ -37,7 +37,10 @@ export interface Terminal {
 }
 
 export const CHAR = {
-    arrowLeft: String.fromCharCode(27),
-    arrowRight: String.fromCharCode(26),
     chevronRight: String.fromCharCode(16),
+    arrowUpDown: String.fromCharCode(18),
+    arrowUp: String.fromCharCode(24),
+    arrowDown: String.fromCharCode(25),
+    arrowRight: String.fromCharCode(26),
+    arrowLeft: String.fromCharCode(27),
 }

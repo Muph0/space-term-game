@@ -1,8 +1,7 @@
 import { Menu } from "../display/Menu";
 import { Game } from '../Game';
-import { StationType } from "../model/station/Station";
-import { STATIONS } from "../model/station/StationDefinitions";
 import { generateNewSystem } from "../model/objects/StarSystem";
+import { STATIONS } from "../model/station/StationDefinitions";
 import { Color } from '../platform/Color';
 import { Keys } from '../platform/Keys';
 import { DrawContext, UpdateContext } from '../Update';
@@ -82,7 +81,5 @@ export class SelectStationScreen implements GameScreen {
 
         term.drawLineX(5, 20, 39, 26);
         term.drawLineX(3, 22, 45, 23.5);
-
-
     }
 }

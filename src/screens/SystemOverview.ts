@@ -31,11 +31,12 @@ export class SystemOverviewScreen implements GameScreen {
         enter: Keys.ArrowDown,
         exit: Keys.ArrowUp,
         recurse: o => {
-            if (o instanceof AstroObject && o !== this.menu.top(1)?.selected) {
-                if (o === this.system) {
-                    return [o].sort(byX);
+            if (this.menu.top.itemCount != 1) {
+                if (o instanceof AstroObject && o !== this.menu.fromTop(1)?.selected && o !== this.system) {
+                    return () => [o, ...o.children].sort(byX);
+                } else {
+                    return [o];
                 }
-                return [o, ...o.children].sort(byX);
             }
         },
         onLevelChange: () => this.ema = 0,
@@ -68,8 +69,8 @@ export class SystemOverviewScreen implements GameScreen {
         const H = term.height;
         const L = 0, T = 0;
         const selected = this.menu.selected;
-        const topMenu = this.menu.top(0)!;
-        const center = this.menu.top(1)?.selected ?? selected.parent ?? this.system;
+        const topMenu = this.menu.fromTop(0)!;
+        const center = this.menu.fromTop(1)?.selected ?? selected.parent ?? this.system;
         const systemRadius = this.system.viewRadius()
         const furthest = lazy(topMenu.items).max((a, b) => a.distanceTo(center) - b.distanceTo(center))!
         const cameraZ = Math.max(
@@ -98,7 +99,7 @@ export class SystemOverviewScreen implements GameScreen {
             vec.y = (this.rng.unif01() * 2 - 1) * systemRadius * starsAway / 1e11;
             vec.z = (i / starCount + 1) * starsAway;
 
-            const intensity = Math.pow(this.rng.unif01(), 2) * 150 + 50;
+            const intensity = Math.pow(this.rng.unif01(), 2) * 130 + 20;
             const n = Math.abs(this.rng.randint());
             vec.z += this.cameraZ;
 
@@ -130,8 +131,10 @@ export class SystemOverviewScreen implements GameScreen {
 
             if (showLabel) term.drawCenteredString(x, y - 1, obj.name);
             if (obj === selected) {
-                term.drawCenteredString(x, y - 1, `${CHAR.arrowLeft} ${obj.name} ${CHAR.arrowRight}`, Color.DarkGreen);
-                term.drawCenteredString(x, y, '[ ]', Color.fromRgb(0, 255, 0));
+                const height = 1
+                term.drawCenteredString(x, y - height, `${CHAR.arrowLeft} ${obj.name} ${CHAR.arrowRight}`, Color.Green);
+                term.drawCenteredString(x, y, '[ ]', Color.Green);
+                term.drawCenteredString(x, y + height, `${CHAR.arrowUpDown} zoom`, Color.DarkGray);
             }
 
             term.drawCenteredString(x, y, String.fromCharCode(7), Color.White);

@@ -136,8 +136,19 @@ export function printLines(term: Terminal, text: string, spaceLeft: number, just
     }
 }
 
-
-export function column<T>(term: Terminal, headline: string, x: number, y: number, iter: Iterable<T>, callback: (t: T) => void): number {
+/**
+ * Draw multiple rows in a managed way.
+ * Break lines automatically, measure the width of the column and print a centered header.
+ * 
+ * @param term The terminal to write to.
+ * @param header Header of the column.
+ * @param x Horizontal position of the column's top-left corner.
+ * @param y Vertical position of the column's top-left corner.
+ * @param iter The iterable of rows.
+ * @param callback The row renderer.
+ * @returns Width of the widest row.
+ */
+export function column<T>(term: Terminal, header: string, x: number, y: number, iter: Iterable<T>, callback: (t: T) => void): number {
     let maxX = 0;
     term.withOrigin(x, y + 1, () => {
         for (let it of iter) {
@@ -146,8 +157,8 @@ export function column<T>(term: Terminal, headline: string, x: number, y: number
             term.println();
         }
     });
-    term.drawCenteredString((x + maxX) / 2, y, headline, Color.DarkGray);
-    return maxX;
+    term.drawCenteredString((x + maxX) / 2, y, header, Color.DarkGray);
+    return Math.abs(maxX - x);
 }
 
 export function fillCircle(term: Terminal, pos: Pos2, radius: number) {

@@ -37,10 +37,11 @@ export class ShipsScreen implements GameScreen {
         const { term } = ctx;
 
         term.println('All ships in reach:');
-        let x = 1;
+        const colMargin = 1;
+        let x = colMargin;
         let y = term.cursorY + 1;
 
-        x = UI.column(term, 'NAME', x, y, this.menu.items, ship => {
+        x += colMargin + UI.column(term, 'NAME', x, y, this.menu.items, ship => {
             const sel = this.menu.selected === ship;
             const color = sel ? Color.White : term.foreground;
             term.print(sel ? Menu.CHEVRON : ' ', color);
@@ -48,9 +49,13 @@ export class ShipsScreen implements GameScreen {
             term.print(ship.name, color);
         });
 
-        x = UI.column(term, 'JOB', x + 1, y, this.menu.items, ship => {
-            const sel = this.menu.selected === ship;
+        x += colMargin + UI.column(term, 'LOCATION', x, y, this.menu.items, ship => {
+            term.print(ship.containerName);
+        });
+
+        x += colMargin + UI.column(term, 'JOB', x, y, this.menu.items, ship => {
             term.print(ship.jobName);
         });
+
     }
 }
