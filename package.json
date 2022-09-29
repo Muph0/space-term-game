@@ -1,6 +1,6 @@
 {
   "name": "space-term-game",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "This is a random game about space and stuff.",
   "main": "bundle.js",
   "scripts": {
@@ -18,6 +18,7 @@
   "devDependencies": {
     "browserify": "^17.0.0",
     "http-server": "^14.1.1",
-    "tsify": "^5.0.4"
+    "tsify": "^5.0.4",
+    "watchify": "^4.0.0"
   }
 }
